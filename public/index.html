@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remail - Email Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-envelope"></i> Remail</h1>
+            <p>Manage and delete emails from specific senders</p>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="showTab('senders')">
+                <i class="fas fa-users"></i> Sender List
+            </button>
+            <button class="tab-button" onclick="showTab('emails')">
+                <i class="fas fa-trash"></i> Delete Emails
+            </button>
+            <button class="tab-button" onclick="showTab('stats')">
+                <i class="fas fa-chart-bar"></i> Statistics
+            </button>
+        </div>
+
+        <!-- Sender List Tab -->
+        <div id="senders-tab" class="tab-content active">
+            <div class="section">
+                <h2>Manage Sender List</h2>
+                <p>Add email addresses to the list of senders whose emails you want to manage.</p>
+                
+                <div class="add-sender-form">
+                    <input type="email" id="senderEmail" placeholder="Enter email address" required>
+                    <button onclick="addSender()" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Add Sender
+                    </button>
+                </div>
+
+                <div class="sender-list">
+                    <h3>Current Senders</h3>
+                    <div id="senderList" class="list-container">
+                        <!-- Senders will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delete Emails Tab -->
+        <div id="emails-tab" class="tab-content">
+            <div class="section">
+                <h2>Delete Emails</h2>
+                <p>Review and delete emails from senders in your list that are older than the specified number of days.</p>
+                
+                <div class="filter-controls">
+                    <label for="daysOld">Emails older than:</label>
+                    <select id="daysOld">
+                        <option value="7">7 days</option>
+                        <option value="30" selected>30 days</option>
+                        <option value="60">60 days</option>
+                        <option value="90">90 days</option>
+                        <option value="180">180 days</option>
+                        <option value="365">1 year</option>
+                    </select>
+                    <button onclick="loadEmails()" class="btn btn-secondary">
+                        <i class="fas fa-search"></i> Load Emails
+                    </button>
+                </div>
+
+                <div class="email-actions">
+                    <button onclick="selectAllEmails()" class="btn btn-outline">
+                        <i class="fas fa-check-square"></i> Select All
+                    </button>
+                    <button onclick="deselectAllEmails()" class="btn btn-outline">
+                        <i class="fas fa-square"></i> Deselect All
+                    </button>
+                    <button onclick="deleteSelectedEmails()" class="btn btn-danger" id="deleteBtn" disabled>
+                        <i class="fas fa-trash"></i> Delete Selected (<span id="selectedCount">0</span>)
+                    </button>
+                </div>
+
+                <div class="email-list">
+                    <div id="emailList" class="list-container">
+                        <!-- Emails will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics Tab -->
+        <div id="stats-tab" class="tab-content">
+            <div class="section">
+                <h2>Email Statistics</h2>
+                <p>Overview of your email management data.</p>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalSenders">0</h3>
+                            <p>Total Senders</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalEmails">0</h3>
+                            <p>Total Emails</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="emails-by-sender">
+                    <h3>Emails by Sender</h3>
+                    <div id="emailsBySender" class="sender-stats">
+                        <!-- Sender statistics will be loaded here -->
+                    </div>
+                </div>
+
+                <button onclick="loadStats()" class="btn btn-primary">
+                    <i class="fas fa-refresh"></i> Refresh Statistics
+                </button>
+            </div>
+        </div>
+
+        <!-- Connection Status -->
+        <div class="connection-status" id="connectionStatus">
+            <i class="fas fa-circle"></i>
+            <span>Checking connection...</span>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Loading...</p>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <h3>Confirm Deletion</h3>
+            <p id="confirmMessage">Are you sure you want to delete the selected emails? This action cannot be undone.</p>
+            <div class="modal-actions">
+                <button onclick="closeModal()" class="btn btn-outline">Cancel</button>
+                <button onclick="confirmDelete()" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
