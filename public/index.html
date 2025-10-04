@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Remail - Email Management</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
@@ -11,7 +14,8 @@
     <div class="container">
         <header>
             <h1><i class="fas fa-envelope"></i> Remail</h1>
-            <p>Manage and delete emails from specific senders</p>
+            <p>Professional Email Management System</p>
+            <p style="font-size: 1rem; margin-top: 8px; opacity: 0.7;">Delete old emails from specific senders with precision and control</p>
         </header>
 
         <div class="tabs">
@@ -29,8 +33,8 @@
         <!-- Sender List Tab -->
         <div id="senders-tab" class="tab-content active">
             <div class="section">
-                <h2>Manage Sender List</h2>
-                <p>Add email addresses to the list of senders whose emails you want to manage.</p>
+                <h2>Sender Management</h2>
+                <p>Create and manage your list of email senders. Add email addresses of people or organizations whose emails you want to organize and delete.</p>
                 
                 <div class="add-sender-form">
                     <input type="email" id="senderEmail" placeholder="Enter email address" required>
@@ -40,7 +44,7 @@
                 </div>
 
                 <div class="sender-list">
-                    <h3>Current Senders</h3>
+                    <h3 style="color: #ffffff; font-size: 1.4rem; font-weight: 600; margin-bottom: 16px; letter-spacing: -0.01em;">Current Senders</h3>
                     <div id="senderList" class="list-container">
                         <!-- Senders will be loaded here -->
                     </div>
@@ -51,12 +55,12 @@
         <!-- Delete Emails Tab -->
         <div id="emails-tab" class="tab-content">
             <div class="section">
-                <h2>Delete Emails</h2>
-                <p>Review and delete emails from senders in your list that are older than the specified number of days.</p>
+                <h2>Email Deletion Center</h2>
+                <p>Review and selectively delete emails from your sender list. Filter by age and use the intuitive tap-to-delete interface for precise email management.</p>
                 
                 <div class="filter-controls">
-                    <label for="daysOld">Emails older than:</label>
-                    <select id="daysOld">
+                    <label for="daysOld" style="color: #ffffff; font-weight: 500; font-size: 1.1rem;">Filter by Age:</label>
+                    <select id="daysOld" style="padding: 12px 16px; border: 2px solid rgba(255, 255, 255, 0.1); border-radius: 8px; background: rgba(255, 255, 255, 0.05); color: #ffffff; font-size: 1rem;">
                         <option value="7">7 days</option>
                         <option value="30" selected>30 days</option>
                         <option value="60">60 days</option>
@@ -92,8 +96,8 @@
         <!-- Statistics Tab -->
         <div id="stats-tab" class="tab-content">
             <div class="section">
-                <h2>Email Statistics</h2>
-                <p>Overview of your email management data.</p>
+                <h2>Analytics Dashboard</h2>
+                <p>Comprehensive overview of your email management data. Track sender activity and monitor your email organization progress.</p>
                 
                 <div class="stats-grid">
                     <div class="stat-card">
@@ -118,7 +122,7 @@
                 </div>
 
                 <div class="emails-by-sender">
-                    <h3>Emails by Sender</h3>
+                    <h3 style="color: #ffffff; font-size: 1.4rem; font-weight: 600; margin-bottom: 16px; letter-spacing: -0.01em;">Email Distribution by Sender</h3>
                     <div id="emailsBySender" class="sender-stats">
                         <!-- Sender statistics will be loaded here -->
                     </div>
